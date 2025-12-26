@@ -1,7 +1,6 @@
 import math
 import random
 
-from number_guess import length
 
 
 class Player:
@@ -26,7 +25,7 @@ class HumanPLayer(Player):
         valid_square = False
         val = None
         while not valid_square:
-            square = input(self.letter + "\'s turn. Input move(0-9)")
+            square = input(self.letter + "\'s turn. Input move(0-9): ")
             try:
                 val = int(square)
                 if val not in game.available_moves():
@@ -111,5 +110,10 @@ def play(game, x_player, o_player, print_game= True):
 
         letter = 'o' if letter == 'x' else 'x'
 
-        if print_game:
-            print("Its atie")
+    if print_game:
+        print("Its a tie")
+if __name__  == '__main__':
+    x_player = HumanPLayer('x')
+    o_player = ComputerPLayer('o ')
+    t = TickTacToe()
+    play(t,x_player, o_player, True)
