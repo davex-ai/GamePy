@@ -14,7 +14,7 @@ def hangman():
 
     lives = 6
     while len(word_letters) > 0 and lives > 0:
-        print("You have "+ str(lives) +" lives remaining. You have used letters " +" ".join(used_letters))
+        print("You have ", lives ," lives remaining. You have used letters " +" ".join(used_letters))
         word_list = [letter if letter in used_letters else '_' for letter in word]
         print("Word is: " + " ".join(word_list))
         user_letter = input("Guess a letter: ").upper()
