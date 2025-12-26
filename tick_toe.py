@@ -13,14 +13,17 @@ class ComputerPLayer(Player):
         super().__init__(letter)
 
     def get_move(self, game):
-        pass
+        return random.choice(game.available_moves)
 
 class HumanPLayer(Player):
     def __init__(self, letter):
         super().__init__(letter)
 
     def get_move(self, game):
-        pass
+        valid_square = False
+        val = None
+        while not valid_square:
+            square = input(self.letter + "\'s turn. Input move(0-9)")
 class TickTacToe:
     def __init__(self):
         self.board = [" " for _ in range(9)]
