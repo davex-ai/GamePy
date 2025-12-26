@@ -12,9 +12,9 @@ def hangman():
     alphabet = set(string.ascii_uppercase)
     used_letters = set()
 
-
-    while len(word_letters) > 0:
-        print("You have used letters " +" ".join(used_letters))
+    lives = 6
+    while len(word_letters) > 0 and lives > 0:
+        print("You have "+ str(lives) +" lives remaining. You have used letters " +" ".join(used_letters))
         word_list = [letter if letter in used_letters else '_' for letter in word]
         print("Word is: " + " ".join(word_list))
         user_letter = input("Guess a letter: ").upper()
@@ -23,11 +23,15 @@ def hangman():
             if user_letter in word_letters:
                 word_letters.remove(user_letter)
             else:
+                lives =- 1
+                print(f"{user_letter} isn't in the {word_list}")
         elif user_letter in used_letters:
             print(f"You already guessed {user_letter}")
         else:
             print("Invalid guess")
-    # if used_letters == word:
-    #     print("You Won🎉🎉")
+    if lives == 0:
+        print("Sorry you died. The word was" + word)
+    else:
+        print("You guessed " + word + " You Won🎉🎉")
 
 hangman()
