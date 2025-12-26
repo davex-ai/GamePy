@@ -37,7 +37,9 @@ class TickTacToe:
             print('| ' + ' | '.join(row) + ' |' )
 
     def available_moves(self):
+        return [i for i, spot in enumerate(self.board) if spot == " "]
         moves = []
         for (index, spot) in enumerate(self.board):
-            if x
+            if spot == ' ':
+                moves.append(spot)
 
