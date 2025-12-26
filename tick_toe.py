@@ -80,3 +80,4 @@ def play(game, x_player, o_player, print_game= True):
                 print(letter + f"makes a move to square {square}")
                 game.print_board()
                 print('')
+        letter = 'o' if letter == 'x' else 'x'
