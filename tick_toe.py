@@ -1,6 +1,9 @@
 import math
 import random
 
+from number_guess import length
+
+
 class Player:
     def __init__(self, letter):
         self.letter = letter
@@ -62,6 +65,8 @@ class TickTacToe:
     def make_move(self, square, letter):
         if self.board[square] == ' ':
             self.board[square] = letter
+            if self.winner(square, letter):
+                self.current_winner = letter
             return True
         return False
 
@@ -80,4 +85,13 @@ def play(game, x_player, o_player, print_game= True):
                 print(letter + f"makes a move to square {square}")
                 game.print_board()
                 print('')
+
+            if game.current_winner:
+                if print_game:
+                    print(letter + 'wins')
+                return letter
+
         letter = 'o' if letter == 'x' else 'x'
+
+        if print_game:
+            print("Its atie")
