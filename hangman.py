@@ -23,15 +23,15 @@ def hangman():
             if user_letter in word_letters:
                 word_letters.remove(user_letter)
             else:
-                lives =- 1
+                lives = lives - 1
                 print(f"{user_letter} isn't in the {word_list}")
         elif user_letter in used_letters:
-            print(f"You already guessed {user_letter}")
+            print("You already guessed that")
         else:
             print("Invalid guess")
     if lives == 0:
-        print("Sorry you died. The word was" + word)
+        print("Sorry you died. The word was" , word)
     else:
-        print("You guessed " + word + " You Won🎉🎉")
+        print("You guessed " , word , " You Won🎉🎉")
 
 hangman()
