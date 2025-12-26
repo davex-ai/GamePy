@@ -24,6 +24,13 @@ class HumanPLayer(Player):
         val = None
         while not valid_square:
             square = input(self.letter + "\'s turn. Input move(0-9)")
+            try:
+                val = int(square)
+                if val not in game.available_moves():
+                    raise ValueError
+                valid_square = True
+            except ValueError:
+                print("Invalid square. Try again")
 class TickTacToe:
     def __init__(self):
         self.board = [" " for _ in range(9)]
