@@ -1,15 +1,3 @@
-# def get_move(self, game):
-#     valid_square = False
-#     val = None
-#     while not valid_square:
-#         square = input(self.letter + "\'s turn. Input move(0-8): ")
-#         try:
-#             val = int(square)
-#             if val not in game.available_moves():
-#                 raise ValueError
-#             valid_square = True
-#         except ValueError:
-#             print("Invalid square. Try again")
 import math
 import random
 
@@ -42,5 +30,14 @@ class GeniusComputer(Player):
         for possible_move in state.available_moves():
             state.make_move(possible_move, player)
             sim_score = self.minimax(state, other_player)
+            state.board[possible_move] = ' '
+            state.current_winner = None
+            sim_score['position'] = possible_move
+            if player == max_player:
+                if sim_score["score"] > best["score"]:
+                    best = sim_score
+            else:
+                if sim_score["score"] <best["score"]:
+                    best = sim_score
 
 
