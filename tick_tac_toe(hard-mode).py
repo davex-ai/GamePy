@@ -1,8 +1,7 @@
 import math
 import random
 
-from tick_toe import Player
-
+from tick_toe import Player, HumanPLayer, TickTacToe
 
 class GeniusComputer(Player):
     def __init__(self, letter):
@@ -43,3 +42,8 @@ class GeniusComputer(Player):
 
         return best
 
+if __name__  == '__main__':
+    x_player = HumanPLayer('x')
+    o_player = GeniusComputer('o')
+    t = TickTacToe()
+    play(t,x_player, o_player, True)

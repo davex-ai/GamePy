@@ -115,6 +115,6 @@ def play(game, x_player, o_player, print_game= True):
         print("Its a tie")
 if __name__  == '__main__':
     x_player = HumanPLayer('x')
-    o_player = ComputerPLayer('o ')
+    o_player = ComputerPLayer('o')
     t = TickTacToe()
     play(t,x_player, o_player, True)
