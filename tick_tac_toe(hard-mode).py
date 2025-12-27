@@ -10,5 +10,25 @@
 #             valid_square = True
 #         except ValueError:
 #             print("Invalid square. Try again")
+import random
 
-def GeniusCimpputer(Player):
+from tick_toe import Player
+
+
+class GeniusCompputer(Player):
+    def __init__(self, letter):
+        super().__init__(letter)
+
+    def get_move(self, game):
+        if len(game.available_moves()) == 9:
+            square = random.choice(game.available_moves())
+        else:
+            square = self.minimax(game, self.letter)
+        return square
+
+    def minimax(self, state, player):
+        max_player = self.letter
+        other_player = 'o' if player == 'x' else 'x'
+        if state.current_winner == other_player:
+            return {"position": None, "square": 1 * (state.num_empty_squares() + 1) if other_player == max_player else -1 * (state.num_empty_squares() + 1)}
+

@@ -59,7 +59,7 @@ class TickTacToe:
         return " " in self.board
 
     def num_empty_squares(self):
-        self.board.count(" ")
+        return self.board.count(" ")
 
     def make_move(self, square, letter):
         if self.board[square] == ' ':
@@ -117,4 +117,4 @@ if __name__  == '__main__':
     x_player = HumanPLayer('x')
     o_player = ComputerPLayer('o ')
     t = TickTacToe()
-    play(t,x_player, o_player, print_game=True)
+    play(t,x_player, o_player, True)
