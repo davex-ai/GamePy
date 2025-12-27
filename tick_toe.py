@@ -1,6 +1,6 @@
 import math
 import random
-
+import time
 
 
 class Player:
@@ -109,6 +109,7 @@ def play(game, x_player, o_player, print_game= True):
                 return letter
 
         letter = 'o' if letter == 'x' else 'x'
+    time.sleep(0.8)
 
     if print_game:
         print("Its a tie")
