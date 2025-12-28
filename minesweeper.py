@@ -66,6 +66,16 @@ class Board:
         return True
 
     def __str__(self):
+        visible_board = [[None for _ in range(self.dim_size)] for _ in range(self.dim_size) ]
+        for row in range(self.dim_size):
+            for col in range(self.dim_size):
+                if (row, col) in self.dug:
+                    visible_board[row][col] = str(self.board[row][col])
+                else:
+                    visible_board[row][col] = ' '
+
+
+
 def play(dim_size=10, num_bombs=10):
     board = Board(dim_size, num_bombs)
     pass
