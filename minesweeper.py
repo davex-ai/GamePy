@@ -65,7 +65,7 @@ class Board:
                 self.dig(r,c)
         return True
 
-
+    def __str__(self):
 def play(dim_size=10, num_bombs=10):
     board = Board(dim_size, num_bombs)
     pass
