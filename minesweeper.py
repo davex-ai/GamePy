@@ -2,6 +2,8 @@
 # row = position[0]
 # column = position[1]
 # print(row, column)
+import random
+
 
 # def print_table():
 #     print("-" * 30)
@@ -21,6 +23,7 @@ class Board:
         board = [[None for _ in range(self.dim_size)] for _ in range(self.dim_size) ]
         bombs_planted = 0
         while bombs_planted < self.num_bombs:
+            loc = random.randint(0, self.dim_size)
 
 
 
