@@ -52,7 +52,12 @@ class Board:
                     num_neighbouring_bombs += 1
         return num_neighbouring_bombs
 
-
+    def dig(self, row, col):
+        self.dug.add((row, col))
+        if self.board[row][col] == '*':
+            return False
+        elif self.board[row][col] > 0:
+            return True
 def play(dim_size=10, num_bombs=10):
     board = Board(dim_size, num_bombs)
     pass
