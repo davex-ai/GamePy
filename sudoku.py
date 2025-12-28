@@ -26,3 +26,12 @@ def solve_sudoku(puzzle):
         return  True
     for guess in range(1, 10):
         if is_valid(puzzle, guess, row, col):
+            puzzle[row][col] = guess
+
+            if solve_sudoku(puzzle):
+                return True
+        puzzle[row][col] = -1
+    return False
+
+
+
