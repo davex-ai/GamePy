@@ -40,9 +40,9 @@ class Board:
             for c in range(self.dim_size):
                 if self.board[r][c] == '*':
                     continue
-                self.board[r][c] = self.getnum_neighbouring(r, c)
+                self.board[r][c] = self.get_num_neighbouring_bombs(r, c)
 
-    def getnum_neighbouring(self, row, column):
+    def get_num_neighbouring_bombs(self, row, column):
         num_neighbouring_bombs = 0
         for r in range(max(0,row-1), min(self.dim_size-1, (row+1))+1):
             for c in range(max(0, column-1), min(self.dim_size-1,(column+1))+1):
@@ -58,6 +58,14 @@ class Board:
             return False
         elif self.board[row][col] > 0:
             return True
+        for r in range(max(0,row-1), min(self.dim_size-1, (row+1))+1):
+            for c in range(max(0, col-1), min(self.dim_size-1,(col+1))+1):
+                if (r, c) in self.dug:
+                    continue
+                self.dig(r,c)
+        return True
+
+
 def play(dim_size=10, num_bombs=10):
     board = Board(dim_size, num_bombs)
     pass
