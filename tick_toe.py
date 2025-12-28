@@ -152,8 +152,25 @@ class GeniusComputer(Player):
 
 
         return best
+# if __name__  == '__main__':
+#     x_player = HumanPLayer('x')
+#     o_player = GeniusComputer('o')
+#     t = TickTacToe()
+#     play(t,x_player, o_player, True)
 if __name__  == '__main__':
-    x_player = HumanPLayer('x')
-    o_player = GeniusComputer('o')
-    t = TickTacToe()
-    play(t,x_player, o_player, True)
+    x_wins = 0
+    o_wins = 0
+    ties = 0
+    for _ in range(100):
+        x_player = ComputerPLayer('x')
+        o_player = GeniusComputer('o')
+        t = TickTacToe()
+        result = play(t,x_player, o_player, True)
+        if result == 'x':
+            x_wins += 1
+        elif result == 'o':
+            o_wins += 1
+        else:
+            ties += 1
+    print(f"Stats\nX Wins: {x_wins}, O Wins: {o_wins}, ties: {ties} ")
+
