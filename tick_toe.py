@@ -139,7 +139,7 @@ class GeniusComputer(Player):
             best = {"position": None, "score": math.inf}
         for possible_move in state.available_moves():
             state.make_move(possible_move, player)
-            sim_score = self.minimax(state, other_player)
+            sim_score = self.minimax(state, other_player) # ←
             state.board[possible_move] = ' '
             state.current_winner = None
             sim_score['position'] = possible_move

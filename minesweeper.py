@@ -18,6 +18,7 @@ class Board:
         self.num_bombs = num_bombs
         self.board = self.make_new_boards()
         self.dug = set()
+        self.assign_values_to_board()
 
     def make_new_boards(self):
         board = [[None for _ in range(self.dim_size)] for _ in range(self.dim_size) ]
@@ -34,7 +35,24 @@ class Board:
             bombs_planted += 1
         return board
 
+    def assign_values_to_board(self):
+        for r in range(self.dim_size):
+            for c in range(self.dim_size):
+                if self.board[r][c] == '*':
+                    continue
+                self.board[r][c] = self.getnum_neighbouring(r, c)
+
+    def getnum_neighbouring(self, row, column):
+        num_neighbouring_bombs = 0
+        for r in range(max(0,row-1), min(self.dim_size-1, (row+1))+1):
+            for c in range(max(0, column-1), min(self.dim_size-1,(column+1))+1):
+                if r == row and c == column:
+                    continue
+                if self.board[r][c] == '*':
+                    num_neighbouring_bombs += 1
+        return num_neighbouring_bombs
 
 
 def play(dim_size=10, num_bombs=10):
+    board = Board(dim_size, num_bombs)
     pass
