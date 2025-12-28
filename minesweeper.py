@@ -23,8 +23,16 @@ class Board:
         board = [[None for _ in range(self.dim_size)] for _ in range(self.dim_size) ]
         bombs_planted = 0
         while bombs_planted < self.num_bombs:
-            loc = random.randint(0, self.dim_size)
+            loc = random.randint(0, self.dim_size**2 - 1)
+            row = loc // self.dim_size
+            col = loc % self.dim_size
 
+            if board[row][col] == '*':
+                continue
+
+            board[row][col] = '*'
+            bombs_planted += 1
+        return board
 
 
 
