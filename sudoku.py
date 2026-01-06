@@ -2,7 +2,7 @@ def find_next_empty(puzzle):
     for r in range(9):
         for c in range(9):
             if puzzle[r][c] == -1:
-                return puzzle[r][c]
+                return r,c
     return None, None
 
 def is_valid(puzzle, guess, row, col):
@@ -13,7 +13,7 @@ def is_valid(puzzle, guess, row, col):
     if guess in col_val:
         return False
     row_start = (row // 3 ) * 3
-    col_start = (row // 3 ) * 3
+    col_start = (col // 3 ) * 3
     for r in range(row_start, row_start + 3):
         for c in range(col_start, col_start + 3):
             if puzzle[r][c] == guess:
@@ -35,18 +35,19 @@ def solve_sudoku(puzzle):
 
 if __name__  == '__main__':
     board = [
-        [1, 9, -1   -1, 5, -1,  -1, -1, -1],
-        [-1, -1, -1,   2, -1, -1,  -1, -1, 5],
-        [-1, -1, -1,   7, 1, 9,  -1, 8, -1],
+        [1, 9, -1, -1, 5, -1, -1, -1, -1],
+        [-1, -1, -1, 2, -1, -1, -1, -1, 5],
+        [-1, -1, -1, 7, 1, 9, -1, 8, -1],
 
-        [-1, 5, -1,   -1, 6, 8,  -1, -1, -1],
-        [2, -1, 6,   -1, -1, 3,  -1, -1, -1],
-        [-1, -1, -1,   -1, -1, -1,  -1, -1, 4],
+        [-1, 5, -1, -1, 6, 8, -1, -1, -1],
+        [2, -1, 6, -1, -1, 3, -1, -1, -1],
+        [-1, -1, -1, -1, -1, -1, -1, -1, 4],
 
-        [5, -1, -1,   -1, -1, -1,   -1, -1, -1],
-        [6, 7, -1,   1, -1, 5,   -1, 4, -1],
-        [1, -1, 9,   -1, -1, -1,   2, -1, -1]
+        [5, -1, -1, -1, -1, -1, -1, -1, -1],
+        [6, 7, -1, 1, -1, 5, -1, 4, -1],
+        [1, -1, 9, -1, -1, -1, 2, -1, -1]
     ]
+
     print(solve_sudoku(board))
     print(board)
 

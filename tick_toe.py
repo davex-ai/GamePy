@@ -15,7 +15,7 @@ class ComputerPLayer(Player):
         super().__init__(letter)
 
     def get_move(self, game):
-        return random.choice(game.available_moves)
+        return random.choice(game.available_moves())
 
 class HumanPLayer(Player):
     def __init__(self, letter):
