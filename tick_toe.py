@@ -39,8 +39,8 @@ class TickTacToe:
         self.current_winner = None
 
     def print_board(self):
-        for row in [self.board[i+3:(i+1)*3] for i in range(3)]:
-            print('| ' + ' | '.join(row) + ' |' )
+        for row in [self.board[i * 3:(i + 1) * 3] for i in range(3)]:
+            print('| ' + ' | '.join(row) + ' |')
 
     @staticmethod
     def print_board_num():
@@ -99,7 +99,7 @@ def play(game, x_player, o_player, print_game= True):
             square = x_player.get_move(game)
         if game.make_move(square, letter):
             if print_game:
-                print(letter + f"makes a move to square {square}")
+                print(letter + f" makes a move to square {square}")
                 game.print_board()
                 print('')
 
@@ -128,30 +128,43 @@ class GeniusComputer(Player):
     def minimax(self, state, player):
         max_player = self.letter
         other_player = 'o' if player == 'x' else 'x'
-        if state.current_winner == other_player:
-            return {"position": None, "square": 1 * (state.num_empty_squares() + 1) if other_player == max_player else -1 * (state.num_empty_squares() + 1)}
 
+        # Check for terminal state
+        if state.current_winner == other_player:
+            return {
+                "position": None,
+                "score": 1 * (state.num_empty_squares() + 1) if other_player == max_player else -1 * (
+                            state.num_empty_squares() + 1)
+            }
         elif not state.empty_squares():
-            return  {"position": None, "score": 0}
+            return {"position": None, "score": 0}
+
         if player == max_player:
             best = {"position": None, "score": -math.inf}
         else:
             best = {"position": None, "score": math.inf}
+
         for possible_move in state.available_moves():
+            # make move
             state.make_move(possible_move, player)
-            sim_score = self.minimax(state, other_player) # ←
+            # recursive call
+            sim_score = self.minimax(state, other_player)
+            # undo move
             state.board[possible_move] = ' '
             state.current_winner = None
             sim_score['position'] = possible_move
+
+            # update best
             if player == max_player:
                 if sim_score["score"] > best["score"]:
                     best = sim_score
             else:
-                if sim_score["score"] <best["score"]:
+                if sim_score["score"] < best["score"]:
                     best = sim_score
 
-
         return best
+
+
 # if __name__  == '__main__':
 #     x_player = HumanPLayer('x')
 #     o_player = GeniusComputer('o')
